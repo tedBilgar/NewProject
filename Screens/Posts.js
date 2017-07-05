@@ -77,8 +77,16 @@ componentDidMount(){
                 <Button onPress={()=>this.onPress()} title="SHARE"/>
                     <ListView dataSource={this.state.dataSource}
                               renderRow={this.renderPost.bind(this)}
+                              //style={{zIndex:1}}
                     />
-                <View><FloatButton/></View>
+                <View style={styles.button}>
+                    <FloatButton
+                        size={5}
+                        color={'yellow'}
+                        icon={require('../img/plus1.png')}
+                        onPress={()=>this.onPress()}
+                    />
+                </View>
             </View>
         )
     }
@@ -114,6 +122,16 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         color:'black'
+    },
+    button: {
+        flexDirection:'row',
+        justifyContent: 'flex-end',
+        padding:16,
+        position:'absolute',
+        zIndex:10,
+        bottom:0,
+        right:0
+       // backgroundColor:'black'
     }
 });
 
