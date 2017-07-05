@@ -17,6 +17,7 @@ import Posts from './Screens/Posts'
 import Hey from './Screens/Hey'
 import MyPost from './Screens/MyPost'
 import postDetails from './Screens/postDetails'
+import API from './Components/API'
 
 const App = StackNavigator({
     Home: { screen: Posts },
@@ -27,7 +28,7 @@ const App = StackNavigator({
 export default class NewProject extends Component {
   render() {
     return (
-        <App/>
+        <API/>
     );
   }
 }
