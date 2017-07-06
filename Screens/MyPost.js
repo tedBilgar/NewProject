@@ -12,6 +12,7 @@ import {
     Button,
     Alert
 } from 'react-native';
+let API = require('../Components/API');
 
 export default class MyPost extends Component {
     static navigationOptions = {
@@ -32,7 +33,7 @@ export default class MyPost extends Component {
     }
 
     onPressButton(){
-        /*fetch('https://mywebsite.com/endpoint/', {
+        fetch('https://mywebsite.com/endpoint/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -42,12 +43,14 @@ export default class MyPost extends Component {
                 firstParam: 'yourValue',
                 secondParam: 'this.state.textValue',
             })
-        })*/
+        })
+
         Alert.alert('You tapped the button!')
     }
 
     render() {
         return (
+            <View style={styles.background}>
             <View style={styles.container}>
                 <View style={{margin:10}}>
                     <TextInput placeholder="Post something..."
@@ -60,14 +63,19 @@ export default class MyPost extends Component {
                     }/>
                 </View>
             </View>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    background:{
+        flex:1,
+        backgroundColor:'#add8e6'
+    },
     container: {
         padding:30,
-        flexDirection:'column',
+        flexDirection:'column'
     },
     input: {
         height: 120,

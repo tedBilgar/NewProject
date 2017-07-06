@@ -18,7 +18,10 @@ import {
 import  MyPost from './MyPost'
 import postDetails from './postDetails'
 import FloatButton from 'C:/NewProject/Components/FloatButton'
+let API = require('../Components/API');
 
+const METHOD_GET = 'GET';
+const METHOD_POST = 'POST';
 export default class Post extends Component {
 
     constructor(){
@@ -34,14 +37,21 @@ export default class Post extends Component {
         title:"Posts"
     }
 componentDidMount(){
-        return fetch('https://jsonplaceholder.typicode.com/posts')
+       /* return fetch('https://jsonplaceholder.typicode.com/posts')
             .then((response) => response.json())
             .then((responseJson) =>
             {
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRows(responseJson),
                 });
+            });*/
+       API.getPosts()//.then((response) => response.json())
+           .then((responseJsone) =>
+        {
+            this.setState({
+                dataSource: this.state.dataSource.cloneWithRows(responseJsone)
             });
+        });
     }
 
     onPress(){
@@ -50,6 +60,9 @@ componentDidMount(){
 
     onPressDetails(post){
         this.props.navigation.navigate('Details',{body:post.body})
+    }
+    getBodies() {
+        return
     }
     renderPost(post){
         return(
@@ -74,7 +87,6 @@ componentDidMount(){
     render() {
         return (
             <View style={styles.background}>
-                <Button onPress={()=>this.onPress()} title="SHARE"/>
                     <ListView dataSource={this.state.dataSource}
                               renderRow={this.renderPost.bind(this)}
                               //style={{zIndex:1}}
@@ -131,8 +143,6 @@ const styles = StyleSheet.create({
         zIndex:10,
         bottom:0,
         right:0
-       // backgroundColor:'black'
     }
 });
 
-//AppRegistry.registerComponent('Post', () => Post);

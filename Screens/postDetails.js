@@ -22,6 +22,9 @@ export default class postDetails extends Component {
     render() {
         return (
             <View style={styles.background}>
+                <View>
+                    <Text style={{color:'blue',fontSize:48,fontFamily: 'Cochin'}}>Name's Post</Text>
+                </View>
                 <View style ={styles.postMain}>
                     <View style={styles.postHeader}>
                         <View>
@@ -31,8 +34,8 @@ export default class postDetails extends Component {
                             <Text>Date</Text>
                         </View>
                     </View>
-                    <View style={styles.postText} >
-                        <Text>{this.state.body}</Text>
+                    <View style={styles.postText}>
+                        <Text style={{color:'black',fontSize:24}}>{this.state.body}</Text>
                     </View>
                 </View>
             </View>
@@ -49,9 +52,6 @@ const styles = StyleSheet.create({
     },
     postMain : {
         flexDirection: 'column',
-        //flex:1,
-        //justifyContent: 'center',
-        //alignItems: 'center',
         marginTop: 20,
         marginRight: 20,
         marginLeft: 20,
@@ -63,9 +63,7 @@ const styles = StyleSheet.create({
     },
     postHeader: {
         flexDirection: 'row',
-        //flex:1,
         justifyContent: 'space-between',
-        //alignItems: 'stretch',
         paddingRight: 6,
         paddingLeft:6,
         paddingTop:3,

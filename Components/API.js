@@ -2,6 +2,7 @@
  * Created by Денис on 05.07.2017.
  */
 
+
 import React, { Component } from 'react';
 import {
     AppRegistry,
@@ -9,28 +10,27 @@ import {
     Text,
     View
 } from 'react-native';
+const apiBaseUrl = 'http://jsonplaceholder.typicode.com';
+const METHOD_GET = 'GET';
+const METHOD_POST = 'POST';
+class API {
 
-export default class API extends Component {
-
-    func(method,url){
-        var promise;
-        const apiBaseUrl = 'http://jsonplaceholder.typicode.com'
-        var headers = {
+    func(method,url,params){
+        let promise;
+        let headers = {
             'Accept': 'application/json',
-            //'Authorization': 'Bearer ' + this.token,
             'Content-type': 'application/json',
             'Accept-Language': 'ru-RU'
         };
         switch (method) {
             case METHOD_GET:
-                promise = fetch(this.apiBaseUrl + url , {
+                promise = fetch(apiBaseUrl + url, {
                     method: METHOD_GET,
                     headers: headers
                 });
                 break;
-            case METHOD_DELETE:
             case METHOD_POST:
-                promise = fetch(this.apiBaseUrl + url, {
+                promise = fetch(apiBaseUrl + url, {
                     method: method,
                     headers: headers,
                     body: JSON.stringify(params)
@@ -44,6 +44,8 @@ export default class API extends Component {
                 return response.text();
             }).then(text => {
                 return JSON.parse(text);
+            }).catch(e => {
+                throw new Error('Response parsing error. ' + e.message);
             }).then(json => {
                 return json;
             }).then(jsonData=>{
@@ -52,11 +54,12 @@ export default class API extends Component {
         });
 
     }
-    render() {
-        return (
-            <Text>{()=>this.func(METHOD_GET,'/posts')}</Text>
-        );
+    getPosts(id=null) {
+        return this.func(METHOD_GET,'/posts'+id?'/'+id:'');
+    }
+    newPost(params){
+        this.func(METHOD_POST,'./posts',params);
     }
 }
 
-//AppRegistry.registerComponent('Hey', () => Hey);
+module.exports = new API;

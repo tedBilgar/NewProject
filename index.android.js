@@ -28,7 +28,7 @@ const App = StackNavigator({
 export default class NewProject extends Component {
   render() {
     return (
-        <API/>
+        <App/>
     );
   }
 }
