@@ -36,7 +36,7 @@ export default class Post extends Component {
     static navigationOptions = {
         title:"Posts"
     }
-componentDidMount(){
+    componentDidMount(){
        /* return fetch('https://jsonplaceholder.typicode.com/posts')
             .then((response) => response.json())
             .then((responseJson) =>
@@ -59,7 +59,7 @@ componentDidMount(){
     }
 
     onPressDetails(post){
-        this.props.navigation.navigate('Details',{body:post.body})
+        this.props.navigation.navigate('Details',{body:post.body,id:post.id})
     }
 
     renderPost(post){
@@ -75,7 +75,7 @@ componentDidMount(){
                     </View>
                 </View>
                 <View style={styles.postText}>
-                    <Text style={styles.textStyle} numberOfLines={this.state.numberOfLines} >{post.userId}:{post.body}</Text>
+                    <Text style={styles.textStyle} numberOfLines={this.state.numberOfLines}>{post.content}</Text>
                 </View>
             </View>
             </TouchableOpacity>

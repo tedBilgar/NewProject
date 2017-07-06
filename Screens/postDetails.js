@@ -9,16 +9,31 @@ import {
     Text,
     View
 } from 'react-native';
+let API = require('../Components/API');
+
+const apiBaseUrl = 'http://jsonplaceholder.typicode.com';
 
 export default class postDetails extends Component {
     constructor(props) {
-        super(props);
-        this.state=this.props.navigation.state.params
+            super(props);
+            this.state= {id:this.props.navigation.state.params.id,
+            post:{body:''}
+        }
     }
 
     static navigationOptions = {
         title:"Details"
+    };
+    componentDidMount(){
+        API.getPosts(this.state.id)
+            .then((responseJsone) =>
+            {
+                this.setState({
+                    post: responseJsone
+                });
+            });
     }
+
     render() {
         return (
             <View style={styles.background}>
@@ -35,7 +50,7 @@ export default class postDetails extends Component {
                         </View>
                     </View>
                     <View style={styles.postText}>
-                        <Text style={{color:'black',fontSize:24}}>{this.state.body}</Text>
+                        <Text style={{color:'black',fontSize:24}}>{this.state.post.body}</Text>
                     </View>
                 </View>
             </View>
@@ -48,7 +63,7 @@ const styles = StyleSheet.create({
       flex:1,
         backgroundColor: '#add8e6',
         justifyContent:'center',
-        alignItems:'center'
+        //alignItems:'center'
     },
     postMain : {
         flexDirection: 'column',

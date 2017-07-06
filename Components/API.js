@@ -10,7 +10,7 @@ import {
     Text,
     View
 } from 'react-native';
-const apiBaseUrl = 'http://jsonplaceholder.typicode.com';
+const apiBaseUrl = 'http://school.is74.ru/api';
 const METHOD_GET = 'GET';
 const METHOD_POST = 'POST';
 class API {
@@ -54,11 +54,14 @@ class API {
         });
 
     }
-    getPosts() {
-        return this.func(METHOD_GET,'/posts');
+    getPosts(id=null) {
+        return this.func(METHOD_GET,'/posts'+(id?'/'+id:''));
     }
     newPost(params){
         this.func(METHOD_POST,'./posts',params);
+    }
+    setTocken(){
+        this.tocken ='';
     }
 }
 
