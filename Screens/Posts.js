@@ -61,9 +61,7 @@ componentDidMount(){
     onPressDetails(post){
         this.props.navigation.navigate('Details',{body:post.body})
     }
-    getBodies() {
-        return
-    }
+
     renderPost(post){
         return(
             <TouchableOpacity onPress={()=>this.onPressDetails(post)} >
@@ -89,6 +87,7 @@ componentDidMount(){
             <View style={styles.background}>
                     <ListView dataSource={this.state.dataSource}
                               renderRow={this.renderPost.bind(this)}
+                             // enableEmptySections={true}
                               //style={{zIndex:1}}
                     />
                 <View style={styles.button}>

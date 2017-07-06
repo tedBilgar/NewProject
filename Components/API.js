@@ -54,8 +54,8 @@ class API {
         });
 
     }
-    getPosts(id=null) {
-        return this.func(METHOD_GET,'/posts'+id?'/'+id:'');
+    getPosts() {
+        return this.func(METHOD_GET,'/posts');
     }
     newPost(params){
         this.func(METHOD_POST,'./posts',params);

@@ -12,7 +12,7 @@ import {
     Button,
     Alert
 } from 'react-native';
-let API = require('../Components/API');
+//let API = require('../Components/API');
 
 export default class MyPost extends Component {
     static navigationOptions = {
@@ -33,7 +33,7 @@ export default class MyPost extends Component {
     }
 
     onPressButton(){
-        fetch('https://mywebsite.com/endpoint/', {
+       /* fetch('https://mywebsite.com/endpoint/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -43,8 +43,10 @@ export default class MyPost extends Component {
                 firstParam: 'yourValue',
                 secondParam: 'this.state.textValue',
             })
-        })
-
+        });*/
+        API.newPost(this.state.textValue)
+            .then(data=>{})
+            .catch(e=>{});
         Alert.alert('You tapped the button!')
     }
 
