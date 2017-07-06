@@ -45,6 +45,7 @@ export default class Post extends Component {
                     dataSource: this.state.dataSource.cloneWithRows(responseJson),
                 });
             });*/
+       API.setToken();
        API.getPosts()//.then((response) => response.json())
            .then((responseJsone) =>
         {

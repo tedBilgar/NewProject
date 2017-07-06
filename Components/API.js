@@ -20,7 +20,8 @@ class API {
         let headers = {
             'Accept': 'application/json',
             'Content-type': 'application/json',
-            'Accept-Language': 'ru-RU'
+            'Accept-Language': 'ru-RU',
+            'Authorization': 'Bearer ' + this.token
         };
         switch (method) {
             case METHOD_GET:
@@ -58,10 +59,10 @@ class API {
         return this.func(METHOD_GET,'/posts'+(id?'/'+id:''));
     }
     newPost(params){
-        this.func(METHOD_POST,'./posts',params);
+        return this.func(METHOD_POST,'/posts',params);
     }
-    setTocken(){
-        this.tocken ='';
+    setToken(){
+        this.token ='3e5181d5e5320e1115ab3457ef23ce2708a84f571e43a712d37f656250f52e52';
     }
 }
 

@@ -25,6 +25,7 @@ export default class postDetails extends Component {
         title:"Details"
     };
     componentDidMount(){
+        API.setToken();
         API.getPosts(this.state.id)
             .then((responseJsone) =>
             {

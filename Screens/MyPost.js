@@ -12,7 +12,7 @@ import {
     Button,
     Alert
 } from 'react-native';
-//let API = require('../Components/API');
+let API = require('../Components/API');
 
 export default class MyPost extends Component {
     static navigationOptions = {
@@ -22,7 +22,8 @@ export default class MyPost extends Component {
     constructor(){
         super();
         this.state ={
-            textValue : 'Hello!'
+            textValue : 'Hello!',
+            data:{}
         }
     }
 
@@ -44,10 +45,14 @@ export default class MyPost extends Component {
                 secondParam: 'this.state.textValue',
             })
         });*/
-        API.newPost(this.state.textValue)
-            .then(data=>{})
+       API.setToken();
+        API.newPost({content:this.state.textValue})
+            .then(data=> {
+                this.setState({
+                    data: data
+                })
+            })
             .catch(e=>{});
-        Alert.alert('You tapped the button!')
     }
 
     render() {
@@ -57,12 +62,15 @@ export default class MyPost extends Component {
                 <View style={{margin:10}}>
                     <TextInput placeholder="Post something..."
                                style={styles.input}
+                               value={this.state.textValue}
                                onChangeText={(value) => this.onChangeText(value)}/>
                 </View>
                 <View>
                     <Button title="POST" color='#191970' onPress={
-                        ()=>{}
+                        ()=>{this.onPressButton()}
                     }/>
+                    <Text>{JSON.stringify(this.state.textValue)}</Text>
+                    <Text>{JSON.stringify(this.state.data)}</Text>
                 </View>
             </View>
             </View>
